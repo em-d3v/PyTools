@@ -19,6 +19,12 @@ class BasicCalculator(AppGui):
     """	    
         Basic Calculator Gui		
     """
+    NUM_KEYS: List[str] = [
+        '7', '8', '9', 
+        '4', '5', '6', 
+        '1', '2', '3', 
+        '+/-', '0', '=', 
+    ]
     
     def __init__(self, master, **kwargs):
         """
@@ -30,6 +36,15 @@ class BasicCalculator(AppGui):
         self.display = tk.Entry(self, width=18,font=gs.ENTRY_FONT,
                              borderwidth=2, justify="right")
         self.display.grid(row=0, column=0, columnspan=4, padx=5, pady=5)
+        #buttons
+        self.keys: List[tk.Button] = []
+        self.buttons: List[str] = [
+            '7', '8', '9', '/',
+            '4', '5', '6', '*',
+            '1', '2', '3', '-',
+            'C', '0', '=', '+'        
+        ]
+        self.keypad = None
         self._build_keypad()
         #configure display
         
@@ -37,21 +52,17 @@ class BasicCalculator(AppGui):
     
     def _build_keypad(self) -> None:
         """ Create Keypad """
-        buttons: List[str] = [
-            '7', '8', '9', '/',
-            '4', '5', '6', '*',
-            '1', '2', '3', '-',
-            'C', '0', '=', '+'        
-        ]
+        
         row = 1
         col = 0
-        for label in buttons:
+        for label in self.buttons:
             #command
-            cmd = lambda l=label: self._on_press(l)
+            # cmd = lambda l=label: self._on_press(l)
             # create buttons
-            btn = tk.Button(self, text=label, width=5, height=2, command=cmd)
+            btn = tk.Button(self, text=label, width=5, height=2)
             btn.grid(row=row, column=col, sticky="nsew", padx=2, pady=2
             )
+            self.keys.append(btn)
             col += 1
             if col > 3:
                 col = 0
