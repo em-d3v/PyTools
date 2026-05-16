@@ -1,7 +1,6 @@
 """
 Filename: __init__.py
-Date: 05/13/2026
+Date: 05/16/2026
 Author: Elena Miller
-
+finanical gui package
 """
-from .main import MainApp
