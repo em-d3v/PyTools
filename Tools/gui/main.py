@@ -10,7 +10,7 @@ from typing import List
 import tkinter as tk
 from tkinter import ttk
 import gui.constants as gs
-from gui.calculator import BasicCalculator
+from Tools.gui.basic.calculator import BasicCalculator
 from gui.menu_bar import MainMenuBar
 from lib.menu import CMenu, COption, CustMenu
 
