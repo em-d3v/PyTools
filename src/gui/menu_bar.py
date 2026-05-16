@@ -9,7 +9,7 @@ import sys
 import tkinter as tk
 from tkinter import ttk
 from typing import List
-import gui.constants as gs
+import src.lib.constants as gs
 
 import gui.menus as menus
 

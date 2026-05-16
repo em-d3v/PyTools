@@ -4,14 +4,17 @@ Date: 05/13/2026
 Author: Elena Miller
 
 """
-
+from typing import List
 from gui.main import MainGui
 from lib.app import App
-from .basic.calculator import BasicCalculator
+
+from ...logic.basic.calculator import BasicCalculator
+
 class MainApp(App):
     """Main Application Class"""
     def __init__(self):
         super().__init__(t="Main App")
+        self._apps:List[(str, App)] = []
         self._build()
         
     def _build(self):
