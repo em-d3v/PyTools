@@ -4,13 +4,13 @@ Date: 05/13/2026
 Author: Elena Miller
 
 """
-from gui.main import MainGui
+from apps.main import MainApp
 def main():
     """
     Main function to run the app
     """
-    main_gui = MainGui()
-    main_gui.run()
+    app = MainApp()
+    app.run()
     
 if __name__ == "__main__":
     main()
