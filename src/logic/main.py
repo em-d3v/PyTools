@@ -8,7 +8,7 @@ from typing import List
 from gui.main import MainGui
 from lib.app import App
 
-from ...logic.basic.calculator import BasicCalculator
+from .basic.calculator import BasicCalculator
 
 class MainApp(App):
     """Main Application Class"""
