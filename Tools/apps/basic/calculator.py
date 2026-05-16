@@ -11,7 +11,7 @@ from typing import List
 
 import gui.constants as gs
 from lib.app import AppGui, App
-from gui.calc import BasicCalculator as BasicCalculatorGui
+from Tools.gui.basic.calculator import BasicCalculator as Gui
 
 keypad_btn_w=5
 keypad_btn_h=2
@@ -23,9 +23,12 @@ class Calculator(App):
         
     def _build(self, parent):
         """Build the application"""
-        self.gui=BasicCalculatorGui(master=parent)
+        self.gui=Gui(master=parent)
         buttons = self.gui.keys
         for btn in buttons:
+            lbl = btn.cget("text")
+            cmd = lambda b=btn: self._on_press(lbl)
+            btn.config(command=cmd)
             pass
     
     def _on_press(self,char:str) ->None:

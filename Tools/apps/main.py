@@ -7,7 +7,7 @@ Author: Elena Miller
 
 from gui.main import MainGui
 from lib.app import App
-
+from .basic.calculator import BasicCalculator
 class MainApp(App):
     """Main Application Class"""
     def __init__(self):
