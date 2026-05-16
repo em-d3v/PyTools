@@ -5,14 +5,16 @@ Elena Miller
 5/11/2026
 Menu Bar
 """
+import sys
 import tkinter as tk
 from tkinter import ttk
 from typing import List
 import gui.constants as gs
 
-FILE_MENU = {"name":"File", "options":[("Exit", None)]}
-        
-    
+import gui.menus as menus
+
+from lib.menu import CMenu, COption
+
 class MainMenuBar(tk.Menu):
     """
     Menu Bar for MainGui
@@ -26,21 +28,30 @@ class MainMenuBar(tk.Menu):
             parent (tk.Tk): Parent of Gui Object
         """
         super().__init__(parent, **kwargs)
-        self.main.add_cascade(label = 'Basic', menu = None, 
-                font=gs.DEFAULT_MENU_FONT)
-        self.main.add_cascade(label = 'Financial', menu = None, 
-                font=gs.DEFAULT_MENU_FONT)
+        # self.add_cascade(label = 'Basic', menu = None, 
+        #         font=gs.DEFAULT_MENU_FONT)
+        # self.add_cascade(label = 'Financial', menu = None, 
+        #         font=gs.DEFAULT_MENU_FONT)
         
         
-        # parent.config(menu = self.menu_bar)
+        parent.config(menu = self)
         
-    def build_menu(self,menu):
+    def add_menu(self,menu:CMenu)->None:
         """"""
-        label = menu["name"]
+        lbl = menu["name"]
         options = menu["options"]
-        if options is None:
-            self.add_cascade(label = label, menu = None, font=gs.DEFAULT_MENU_FONT)
+        # self.add_cascade(label = lbl, menu = None)
+        if options == None:
+            return
         else:
             # Create a new menu for the options
+            sub_menu = tk.Menu(self, tearoff=0)
+            for option in options:
+                opt_lbl = option.label
+                command = option.command
+                m = option.menu
             
+                sub_menu.add_cascade(label = opt_lbl, command=command, menu=m)
+                # Add the option to the menu
+            self.add_cascade(label = lbl, menu = sub_menu)
         pass
