@@ -8,19 +8,24 @@ from typing import List
 from gui.main import MainGui
 from lib.app import App
 
-from .basic.calculator import BasicCalculator
+from .basic.calculator import BasicCalc
 
 class MainApp(App):
     """Main Application Class"""
+    #apps to be added to main app
+    _apps: List[(App, str)] = [
+        (BasicCalc, "calculator16x16.png")
+    ]
     def __init__(self):
         super().__init__(t="Main App")
-        self._apps:List[(str, App)] = []
+        #create main gui
+        self.gui = MainGui(on_exit=self.exit)
         self._build()
         
     def _build(self):
         """Build the application"""
-        self.gui=MainGui(on_exit=self.exit)
-        
+        for name, app_cls, icon in self._apps:
+            self.gui.add_app(app_cls, icon)
         pass
     def run(self):
         """Run Main Loop"""

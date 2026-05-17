@@ -9,28 +9,23 @@ Main Module for Gui
 import tkinter as tk
 from typing import List
 
-import src.lib.constants as gs
+import lib.constants as gs
 from lib.app import AppGui, App
 from gui.basic.calculator import BasicCalculator as Gui
 
 keypad_btn_w=5
 keypad_btn_h=2
-class Calculator(App):
+class BasicCalc(App):
     """Basic Calculator App"""
     def __init__(self,parent):
-        super().__init__(t="Calculator")
-        self._build(parent)
-        
-    def _build(self, parent):
-        """Build the application"""
-        self.gui=Gui(master=parent)
+        super().__init__(t="Calculator", gui=Gui(master=parent))
+        #configure buttons
         buttons = self.gui.keys
         for btn in buttons:
             lbl = btn.cget("text")
             cmd = lambda b=btn: self._on_press(lbl)
             btn.config(command=cmd)
-            pass
-    
+            
     def _on_press(self,char:str) ->None:
         """ logic for buttons """
         
