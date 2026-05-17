@@ -5,5 +5,4 @@ Author: Elena Miller
 
 """
 from .annuity import Annuity
-from .currency import Currency
 from .loan import Loan
