@@ -1,0 +1,10 @@
+{
+    "name": "python-tools",
+    "version": "1.0.0",
+    "description": "A collection of Python tools (with Gui) for various tasks.",
+    "main": "scripts/runner.py",
+    "scripts": {
+        "run": "python scripts/runner.py",
+        "install": "pip install -r requirements.txt"
+    }
+}
