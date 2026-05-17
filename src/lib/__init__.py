@@ -3,9 +3,5 @@ Libriary Module
 Author: 
 Date Created: 5/13/2026
 
-This is a Library for 
+This is a Library for other modules
 """
-# from .app import Application
-# from .menu import CMenu, COption
-# from .csettings import Settings
-# from .gui_settings import GUISettings
