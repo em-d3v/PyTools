@@ -1,0 +1,19 @@
+"""
+Filename: __init__.py
+Date: 05/13/2026
+Author: Elena Miller
+
+"""
+
+import sys
+import tkinter as tk
+DIRECTORY = sys.path[0] + "/resources/"
+IMG_DIR = DIRECTORY + "images/"
+
+def ResImg(path:str):
+    """
+    Get an image from the resources directory.
+    """
+    p = IMG_DIR + path
+    image = tk.PhotoImage(file=p)
+    return image
