@@ -9,10 +9,13 @@ import sys
 from typing import List
 import tkinter as tk
 from tkinter import ttk
-import src.lib.constants as gs
+import lib.constants as gs
 from gui.basic.calculator import BasicCalculator
 from gui.menu_bar import MainMenuBar
-from lib.menu import CMenu, COption, CustMenu
+from lib.menu import CMenu, COption
+from lib.app import App
+import resources as res
+
 
 class MainGui(tk.Tk):
     """
@@ -36,9 +39,9 @@ class MainGui(tk.Tk):
         menu_bar.config(font=gs.DEFAULT_MENU_FONT)
         self.menu_bar = menu_bar
         self._app = None
-        self._apps: List[(str, tk.Frame)] = [
-                ("Calculator", BasicCalculator)
-        ]
+        # self._apps: List[(str, tk.Frame, str)] = [
+        #         ("Calculator", BasicCalculator,"calculator16x16.png"),
+        # ]
         self._body_panel = tk.Frame(master=self)
         
         
@@ -66,16 +69,27 @@ class MainGui(tk.Tk):
         )
         self.protocol("WM_DELETE_WINDOW", on_exit)
         
-    def _build(self):
-        """Build Application"""
+    def add_app(self, app:App, icon:str)->None:
+        """Add Application
+        app: App to add
+        icon: icon to use for app tab
+        """
+        app_gui = app.gui 
+        gui = None
+        if app_gui is not None:
+            gui = app_gui(self._tabs_frame)
+            self._tabs_frame.add(gui, text=t,image=res.ResImg(icon), compound="left")
+        t = app.title
         
     def _build_apps(self)->None:
         """Build Application Frames"""
+        for name, app_cls, icon in self._apps:
+            app = app_cls(self._tabs_frame)
+            self._tabs_frame.add(app, text=name,image=res.ResImg(icon), compound="left")
+        # self._basic_calc = BasicCalculator(self._tabs_frame)
+        # self._basic_calc.pack(expand=True, fill="both")
         
-        self._basic_calc = BasicCalculator(self._tabs_frame)
-        self._basic_calc.pack(expand=True, fill="both")
-        
-        self._tabs_frame.add(self._basic_calc, text="Calculator")
+        # self._tabs_frame.add(self._basic_calc, text="Calculator")
         
     def exit(self)->None:
         """Exit Application"""

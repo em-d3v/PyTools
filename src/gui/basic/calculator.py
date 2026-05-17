@@ -9,7 +9,7 @@ Main Module for Gui
 import tkinter as tk
 from typing import List
 
-import src.lib.constants as gs
+import lib.constants as gs
 from lib.app import AppGui
 
 keypad_btn_w=5
