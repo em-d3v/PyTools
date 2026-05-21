@@ -5,6 +5,7 @@
     "main": "scripts/runner.py",
     "scripts": {
         "run": "python ./scripts/runner.py",
+        "build": "python ./scripts/builder.py",
         "install": "pip install -r requirements.txt"
     }
 }

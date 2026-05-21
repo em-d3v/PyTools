@@ -12,9 +12,9 @@ from .basic.calculator import BasicCalc
 class MainApplication(Application):
     """Main Application Class"""
     #apps to be added to main app
-    # _apps: List[(App, str)] = [
-    #     (BasicCalc, "calculator16x16.png")
-    # ]
+    _apps: List[(App, str)] = [
+        (BasicCalc, "calculator16x16.png")
+    ]
     def __init__(self):
         super().__init__(name="main", title="Main App", type=Application.APP_MULTI)
         #create main gui

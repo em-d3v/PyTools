@@ -23,4 +23,18 @@ DIRS = {
     "src": f"{PROJECT_DIR}/src",
     "data": f"{PROJECT_DIR}/data"
 }
+extensions = {
+    "win": ".exe",
+    "linux": "",
+    "mac": ".app"
+}
+target = {
+    "name": "PyTools",
+    "dir": "./build/",
+    
+}
+
+SOURCE_FILE = f"{DIRS['src']}/main.py"
+target_name = "PyTools"
+
 MAIN_FILE = f"{DIRS['src']}/main.py"
