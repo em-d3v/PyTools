@@ -49,7 +49,7 @@ class MainGui(tk.Tk):
         self._tabs_frame.pack(expand=True, fill="both")
         #add apps to tabs
     
-        self._build_apps()
+        # self._build_apps()
         
         self._body_panel.pack(expand=True, fill="both")
         #Add menus
@@ -81,15 +81,11 @@ class MainGui(tk.Tk):
             self._tabs_frame.add(gui, text=t,image=res.ResImg(icon), compound="left")
         t = app.title
         
-    def _build_apps(self)->None:
+    def add_apps(self, apps: List[tuple])->None:
         """Build Application Frames"""
-        for name, app_cls, icon in self._apps:
+        for name, app_cls, icon in apps:
             app = app_cls(self._tabs_frame)
             self._tabs_frame.add(app, text=name,image=res.ResImg(icon), compound="left")
-        # self._basic_calc = BasicCalculator(self._tabs_frame)
-        # self._basic_calc.pack(expand=True, fill="both")
-        
-        # self._tabs_frame.add(self._basic_calc, text="Calculator")
         
     def exit(self)->None:
         """Exit Application"""

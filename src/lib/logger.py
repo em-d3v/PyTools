@@ -4,8 +4,16 @@ Date: 05/13/2026
 Author: Elena Miller
 
 """
-
-class CLogger:
+import sys
+class Logger:
     """A simple logger class that writes log messages to a file."""
     def __init__(self, log_file:str):
-        self.log_file = log_file
+        self.filepath = log_file
+        self.options = {
+            'append': True
+        }
+    
+    def log(self, message:str):
+        """Write a log message to the file."""
+        with open(self.filepath, 'a') as f:
+            f.write(message + '\n')

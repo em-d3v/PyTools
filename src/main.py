@@ -4,12 +4,12 @@ Date: 05/13/2026
 Author: Elena Miller
 
 """
-from logic.main import MainApp
+from logic.main import MainApplication
 def main():
     """
     Main function to run the app
     """
-    app = MainApp()
+    app = MainApplication()
     app.run()
     
 if __name__ == "__main__":

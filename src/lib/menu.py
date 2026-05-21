@@ -20,18 +20,6 @@ class COption:
         self.command = cmd
         self.menu = menu
         self.options = None
-class CustMenu:
-    """custom menu class
-    keys:
-        name:str
-        options:List[COption] or None
-    """
-    def __init__(self, label:str, cmd:callable = None, menu:tk.Menu=None):
-        self.label = label
-        self.command = cmd
-        self.menu = menu
-        
-
 
 
 class CMenu(UserDict):
