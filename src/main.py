@@ -5,6 +5,7 @@ Author: Elena Miller
 
 """
 from logic.main import MainApplication
+from lib.application import Application
 def main():
     """
     Main function to run the app

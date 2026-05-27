@@ -7,7 +7,7 @@ main gui module for basic tools
 import tkinter as tk
 from tkinter import ttk
 from lib.application import ApplicationGui
-
+from .calculator import BasicCalculator as CalculatorGui
 class BasicAppLib(ApplicationGui):
     """
     Application Library Gui

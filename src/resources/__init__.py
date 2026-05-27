@@ -8,7 +8,7 @@ Author: Elena Miller
 import sys
 import tkinter as tk
 DIRECTORY = sys.path[0] + "/resources/"
-IMG_DIR = DIRECTORY + "images/"
+IMG_DIR = DIRECTORY + "img/"
 
 def ResImg(path:str):
     """

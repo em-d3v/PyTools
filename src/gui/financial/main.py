@@ -8,9 +8,9 @@ main frame for financial tools
 import tkinter as tk
 from tkinter import ttk
 from typing import List
-from lib.app import AppGui
+from lib.application import ApplicationGui
 
-class FinancialTools(AppGui):
+class FinancialTools(ApplicationGui):
     """Financial Tools Main Frame"""
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)

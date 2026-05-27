@@ -47,11 +47,11 @@ class Application:
             gui (ttk.Frame): GUI for the application (default: None)
         """
         self._type = type
-        self._name = name
-        self._title = title
-        self._settings = {}
-        self._gui = gui
-        self._data = {}
+        self.name = name
+        self.title = title
+        self.gui = gui
+        self.settings = {}
+        self.data = {}
     
     """private methods"""
     def _build(self):
@@ -72,7 +72,7 @@ class Application:
         Method to get a value from the application data
         """
         return self.data.get(key, default)
-        
+    
         
     def trigger(self, event:str, data:dict = {}):
         """

@@ -40,7 +40,7 @@ class App:
     """
     Application Class 
     """
-    def __init__(self, t:str = "App",gui:AppGui = None, settings:dict = {}, data:dict = {}):
+    def __init__(self, t:str = "App",gui = None, settings:dict = {}, data:dict = {}):
         """
         Constructor for App class
         Args:
@@ -55,7 +55,9 @@ class App:
         self.data = data
         
         pass
-    def save_data(self):
+    
+    
+    def save(self):
         """
         Method to save data
         """
@@ -65,7 +67,7 @@ class App:
         Method to reset data
         """
         pass
-    def load_data(self):
+    def load(self):
         """Method to load data
         """        
         pass

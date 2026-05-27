@@ -10,12 +10,12 @@ import tkinter as tk
 from typing import List
 
 import lib.constants as gs
-from lib.app import AppGui
+from lib.application import ApplicationGui
 
 keypad_btn_w=5
 keypad_btn_h=2
 
-class BasicCalculator(AppGui):
+class BasicCalculator(ApplicationGui):
     """	    
         Basic Calculator Gui		
     """

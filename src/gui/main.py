@@ -10,10 +10,9 @@ from typing import List
 import tkinter as tk
 from tkinter import ttk
 import lib.constants as gs
-from gui.basic.calculator import BasicCalculator
 from gui.menu_bar import MainMenuBar
 from lib.menu import CMenu, COption
-from lib.app import App
+from lib.application import Application
 import resources as res
 
 
@@ -69,18 +68,18 @@ class MainGui(tk.Tk):
         )
         self.protocol("WM_DELETE_WINDOW", on_exit)
         
-    def add_app(self, app:App, icon:str)->None:
+    def addApp(self, app:Application, icon:str)->None:
         """Add Application
         app: App to add
         icon: icon to use for app tab
         """
-        app_gui = app.gui 
+        app_gui = app.gui
         gui = None
         if app_gui is not None:
-            gui = app_gui(self._tabs_frame)
+            gui = app_gui
+            t = app.title
             self._tabs_frame.add(gui, text=t,image=res.ResImg(icon), compound="left")
-        t = app.title
-        
+    
     def add_apps(self, apps: List[tuple])->None:
         """Build Application Frames"""
         for name, app_cls, icon in apps:

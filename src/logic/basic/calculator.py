@@ -10,16 +10,17 @@ import tkinter as tk
 from typing import List
 
 import lib.constants as gs
-from lib.app import AppGui, App
+from lib.application import Application
 from gui.basic.calculator import BasicCalculator as Gui
 
 keypad_btn_w=5
 keypad_btn_h=2
-class BasicCalc(App):
+class BasicCalculator(Application):
     """Basic Calculator App"""
     def __init__(self,parent):
-        super().__init__(t="Calculator", gui=Gui(master=parent))
+        super().__init__(name="calculator",title="Calculator", gui=None)
         #configure buttons
+        self.gui = Gui(master=parent)
         buttons = self.gui.keys
         for btn in buttons:
             lbl = btn.cget("text")
