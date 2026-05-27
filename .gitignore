@@ -5,3 +5,4 @@
 **/*.pyo
 **/bin
 **/log
+**/*.spec
