@@ -30,7 +30,7 @@ extensions = {
 }
 target = {
     "name": "PyTools",
-    "dir": "./build/",
+    "directory": "./build",
     
 }
 
