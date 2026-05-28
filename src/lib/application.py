@@ -6,7 +6,8 @@ Application Class
 """
 import tkinter as tk
 from tkinter import ttk
-
+from typing import List, Tuple
+from resources import Resource
 class ApplicationGui(tk.Frame):
     """
     Base Application GUI Class
@@ -37,7 +38,7 @@ class Application:
     """Application Types"""
     APP_SINGLE = "single" # application is a single tool
     APP_MULTI = "multi"   # application is a library of tools
-    def __init__(self, name:str = "app", title:str = "App", type:str = APP_SINGLE, gui:ttk.Frame|tk.Tk = None):
+    def __init__(self, name:str = "app", title:str = "App", type:str = APP_SINGLE, gui:ttk.Frame|tk.Tk = None, enabled=False):
         """
         Create an Application Instance
         Parameters:
@@ -52,6 +53,7 @@ class Application:
         self.gui = gui
         self.settings = {}
         self.data = {}
+        self.enabled = False
     
     """private methods"""
     def _build(self):
@@ -95,18 +97,69 @@ class Application:
         Method to reset the application state
         """
         pass
-        
-class ApplicationLibrary(ApplicationGui):
+
+class ApplicationLibraryGui(ApplicationGui):
     """
     Application Library GUI Class
     Used to hold multiple small applications in a tabbed interface
     """
     
-    def __init__(self, master:tk.Tk, **kwargs):
+    def __init__(self, master, **kwargs):
         """
         Initialize the Application Library GUI instance
         """
         super().__init__(master, **kwargs)
+        self.notebook = ttk.Notebook(master=self)
+        self.notebook.pack(fill="both", expand=True)
         
+    def AddToTabs(self, a:List[Tuple[Application, str]]):
+        """
+        Add application gui to tabs
+        Args:
+            a (List[(Application, str)])
+        """
+        for app, icon in a:
+            gui = app.gui
+            lbl = app.title
+            self.notebook.add(child=gui,state="normal",)
+        pass
+    
         
-        self._build()
+class ApplicationLibrary:
+    """
+    Application Library Class
+    Used to hold multiple small applications in a tabbed interface
+    """
+    resource = Resource()
+    def __init__(self,gui=None,apps=[],parent=None):
+        
+        self.apps = apps
+        self.gui = gui
+        if self.gui is None:
+            self.gui = ApplicationLibraryGui(master=parent)
+        pass
+    
+    def Add(self, data:Application|List[Tuple[Application, str]], icon:str=None)->None:
+        """
+        Adds an Application to the 
+        """
+        if isinstance(data, Application):
+            app = data()
+            gui = app.gui
+            if icon is not None:
+                tab_icon = self.resource("image", name=icon)
+                self.gui.notebook.add(child=gui,text=app.title, image=tab_icon, compound="left")
+            else:
+                self.gui.notebook.add(child=gui,text=app.title)
+        else:
+            for x, img in data:
+                app = x()
+                gui = app.gui
+                if icon is not None:
+                    tab_icon = self.resource("image", name=img)
+                    self.gui.notebook.add(child=gui,text=app.title, image=tab_icon, compound="left")
+                else:
+                    self.gui.notebook.add(child=gui,text=app.title)
+        pass
+
+        
