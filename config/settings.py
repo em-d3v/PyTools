@@ -9,32 +9,31 @@ Settings for the Python Tools project.
 from typing import Dict
 from pathlib import Path
 import os
-
-PROJECT_DIR = Path(__file__).parent.parent
-CONFIG_DIR = Path(__file__).parent
-
-# LOG_DIR = f"{PROJECT_DIR}/log"
-# BIN_DIR = f"{PROJECT_DIR}/bin"
-# SRC_DIR = f"{PROJECT_DIR}/src"
-# DATA_DIR = f"{PROJECT_DIR}/data"
-DIRS = {
-    "log": f"{PROJECT_DIR}/log",
-    "bin": f"{PROJECT_DIR}/bin",
-    "src": f"{PROJECT_DIR}/src",
-    "data": f"{PROJECT_DIR}/data"
+FOLDER = Path(__file__).parent
+PROJECT = FOLDER.parent
+# project directories
+DIRECTORY = {
+    "config":   FOLDER,
+    "project":  PROJECT,
+    "source":   "src",
+    "log":      "log",
+    "bin":      "bin",
+    "data":     "data",
+    "build":    "build",
+    "res":      "rsrc",
+    "cache":    "__pycache__"
 }
-extensions = {
+
+SOURCE_FILE =  os.path.join(PROJECT, DIRECTORY["source"],"main.py")
+EXTENSIONS = {
     "win": ".exe",
     "linux": "",
     "mac": ".app"
 }
-target = {
+
+TARGET = {
     "name": "PyTools",
-    "directory": "./build",
-    
+    "dir": os.path.join(PROJECT, DIRECTORY["build"]),
+    "source": os.path.join(PROJECT, DIRECTORY["source"],"main.py")
 }
 
-SOURCE_FILE = f"{DIRS['src']}/main.py"
-target_name = "PyTools"
-
-MAIN_FILE = f"{DIRS['src']}/main.py"
