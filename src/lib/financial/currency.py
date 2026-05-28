@@ -15,6 +15,10 @@ class Currency:
     - value: float
     """
     
+    value: float
+    amount: float
+    code: str
+    symbol: str
     
     def __init__(self, name: str, symbol: str, code: str, value: float):
         """Initialize a Currency object."""
