@@ -1,8 +1,15 @@
+#python
 **/__pycache__
+
+#visual studio
+**/.vs
+
 **/dist
 **/build
 **/*.pyc
 **/*.pyo
 **/bin
 **/log
+**/*.log
 **/*.spec
+**/*.exe
