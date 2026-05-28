@@ -9,6 +9,7 @@ import subprocess
 import sys
 import os
 from pathlib import Path
+# import constants as const
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'config')))
 from config import settings as s
 
@@ -18,20 +19,23 @@ project_dir = Path(__file__).parent.parent  # Get the directory of the current s
 
 #paths to files
 paths = {
-    "main": s.MAIN_FILE,
-    "log":  os.path.join(s.DIRS["log"], "builder.log") 
+    "main": s.SOURCE_FILE,
+    "log":  os.path.join(s.DIRECTORY["project"], s.DIRECTORY["log"], "builder.log"),
+    "output": os.path.join(s.DIRECTORY["project"], s.DIRECTORY["build"])
 }
 
-
+command = ["pyinstaller",
+            "--onefile",    paths["main"], 
+            "-n",           s.TARGET["name"],
+            "--distpath",   s.TARGET["dir"],
+            "--specpath",   s.TARGET["build"],
+            "--clean",
+        ]
 # make log directory if it doesn't exist
-os.makedirs(s.DIRS["log"], exist_ok=True)
+os.makedirs(s.DIRECTORY["log"], exist_ok=True)
 #capture output
-result = subprocess.run(
-[sys.executable, paths["main"]],
-capture_output=True,
-text=True
-)
-#log entry
+print("Building Executable...")
+result = subprocess.run(command, capture_output=True)
 timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 log_entry = (
     f"\n--- Run at {timestamp} ---\n"
@@ -40,11 +44,6 @@ log_entry = (
 )
 with open(paths["log"], "w") as f:
         f.write(log_entry)
-print("Building Executable...")
-subprocess.run(["pyinstaller", 
-                "--onefile", paths["main"], 
-                "-n", s.target["name"],
-                "--distpath", s.target["dir"]])
 print("Output:", result.stdout)
 print("Errors:", result.stderr)
 

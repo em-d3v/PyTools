@@ -20,13 +20,13 @@ project_dir = Path(__file__).parent.parent  # Get the directory of the current s
 
 #paths to files
 paths = {
-    "main": s.MAIN_FILE,
-    "log":  os.path.join(s.DIRS["log"], "runner.log") 
+    "main": s.SOURCE_FILE,
+    "log":  os.path.join(s.DIRECTORY["log"], "runner.log") 
 }
 
 
 # make log directory if it doesn't exist
-os.makedirs(s.DIRS["log"], exist_ok=True)
+os.makedirs(s.DIRECTORY["log"], exist_ok=True)
 #capture output
 result = subprocess.run(
 [sys.executable, paths["main"]],
