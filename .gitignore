@@ -3,6 +3,7 @@
 
 #visual studio
 **/.vs
+**/.vscode
 
 **/dist
 **/build
