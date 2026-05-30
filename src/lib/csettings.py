@@ -6,6 +6,7 @@ Author: Elena Miller
 """
 from typing import List
 
+
 class Settings:
     """
     Settings Class
@@ -22,7 +23,7 @@ class Settings:
             if item[0] == id:
                 return item[1]
         return None
-    def set(self, id:str, value:object):
+    def set(self, id:str, value:any):
         """ 
         Set setting value by id
         """

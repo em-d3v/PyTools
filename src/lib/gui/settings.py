@@ -5,7 +5,8 @@ Author: Elena Miller
 
 """
 
-from .csettings import Settings
+from csettings import Settings
+
 
 class GuiSettings(Settings):
     """

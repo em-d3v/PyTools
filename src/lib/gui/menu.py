@@ -6,44 +6,37 @@ cusotm menu class
 """
 import tkinter as tk
 from collections import UserDict
-from typing import List, Dict, Any
+from typing import Any, Dict, List
 
-class COption:
-    """menu option
+
+class MenuItem:
+    """
+    menu item
     keys:
         label:str
         command:callable or None
         menu: tk.Menu or None
+        items: 
     """
-    def __init__(self, label:str, cmd:callable = None, menu:tk.Menu=None):
+    def __init__(self, label:str, cmd:callable = None, menu:tk.Menu=None, items=None):
         self.label = label
         self.command = cmd
         self.menu = menu
-        self.options = None
+        self.items = None
 
-
-class CMenu(UserDict):
-    """
-    custom menu dictionary
-    keys: 
-    label:str
-    name:str   
-    cmd:callable or None 
-    options:List[COption] or None
-    
-    """
-    def __init__(self, name:str = "", options:List[COption] = None):
+class MenuItemList(UserDict):
+    def __init__(self, name:str, items:List[MenuItem]= []):
         super().__init__()
-        self["name"] = name
-        self["options"] = options
-        #end
-    def __setitem__(self, key, value:COption):
+        self[name] = name
+        self[items] = items
+    def __setitem__(self, key, value:MenuItem):
         if key == "name":
             if not isinstance(value, str):
                 raise ValueError("name must be a string")
             super().__setitem__(key, value)
-        elif key == "options":
+        elif key == "items":
             super().__setitem__(key, value)
         pass
     def __getitem__(self, key):
+        
         return super().__getitem__(key)
