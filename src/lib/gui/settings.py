@@ -4,6 +4,8 @@ Date: 05/13/2026
 Author: Elena Miller
 
 """
+import tkinter as tk
+from tkinter import ttk
 
 from csettings import Settings
 
@@ -18,3 +20,10 @@ class GuiSettings(Settings):
         self.set("fg_color", "#000000")
         self.set("font", ("Arial", 12))
         self.set("entry_font", ("Arial", 14))
+
+class StyleSettings(ttk.Style):
+    _styles = []
+    def __init__(self, master = None, **kwargs):
+        super().__init__(master)
+    
+    

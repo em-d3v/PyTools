@@ -27,8 +27,9 @@ class MenuItem:
 class MenuItemList(UserDict):
     def __init__(self, name:str, items:List[MenuItem]= []):
         super().__init__()
-        self[name] = name
-        self[items] = items
+        self["name"] = name
+        self["items"] = items
+        
     def __setitem__(self, key, value:MenuItem):
         if key == "name":
             if not isinstance(value, str):

@@ -7,7 +7,10 @@ Application Class
 import tkinter as tk
 from tkinter import ttk
 from typing import List, Tuple
+
 from resources import Resource
+
+
 class ApplicationGui(tk.Frame):
     """
     Base Application GUI Class
@@ -143,23 +146,24 @@ class ApplicationLibrary:
         """
         Adds an Application to the 
         """
-        if isinstance(data, Application):
-            app = data()
-            gui = app.gui
-            if icon is not None:
-                tab_icon = self.resource("image", name=icon)
-                self.gui.notebook.add(child=gui,text=app.title, image=tab_icon, compound="left")
-            else:
-                self.gui.notebook.add(child=gui,text=app.title)
-        else:
-            for x, img in data:
-                app = x()
+        if self.gui is not None:
+            if isinstance(data, Application):
+                app = data()
                 gui = app.gui
                 if icon is not None:
-                    tab_icon = self.resource("image", name=img)
+                    tab_icon = self.resource("image", name=icon)
                     self.gui.notebook.add(child=gui,text=app.title, image=tab_icon, compound="left")
                 else:
                     self.gui.notebook.add(child=gui,text=app.title)
+            else:
+                for x, img in data:
+                    app = x()
+                    gui = app.gui
+                    if icon is not None:
+                        tab_icon = self.resource("image", name=img)
+                        self.gui.notebook.add(child=gui,text=app.title, image=tab_icon, compound="left")
+                    else:
+                        self.gui.notebook.add(child=gui,text=app.title)
         pass
 
         
