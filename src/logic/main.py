@@ -4,11 +4,13 @@ Date: 05/13/2026
 Author: Elena Miller
 
 """
-from typing import List
+from typing import List, Tuple
+
 from gui.main import MainGui
-from lib.app import App
 from lib import Application, ApplicationGui
+
 from .basic.calculator import BasicCalculator
+
 
 class MainApplication(Application):
     """Main Application Class"""
@@ -20,7 +22,9 @@ class MainApplication(Application):
         super().__init__(name=name, title=title, type=type)
         #create main gui
         self.gui=MainGui(on_exit=self.exit)
+        # self.
         self.applications = []
+        self.tools = []
         self._build()
         
     def _build(self):

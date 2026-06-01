@@ -7,4 +7,4 @@ for creating gui stuff
 import tkinter as tk
 from collections import UserDict
 from tkinter import ttk
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Tuple

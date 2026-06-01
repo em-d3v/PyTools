@@ -9,17 +9,18 @@ Main Module for Gui
 import tkinter as tk
 from typing import List
 
-import lib.constants as gs
-from lib.application import Application
 from gui.basic.calculator import BasicCalculator as Gui
+from logic.application import Application
 
 keypad_btn_w=5
 keypad_btn_h=2
 class BasicCalculator(Application):
     """Basic Calculator App"""
+    _text: str
     def __init__(self,parent):
         super().__init__(name="calculator",title="Calculator", gui=None)
         #configure buttons
+        self.icon = "calcu"
         self.gui = Gui(master=parent)
         buttons = self.gui.keys
         for btn in buttons:
@@ -38,8 +39,10 @@ class BasicCalculator(Application):
             except Exception:
                 self.gui.display.delete(0, tk.END)
                 self.gui.display.insert(tk.END, "Error")
+                
         elif char == "C":
             self.gui.display.delete(0, tk.END)
         else:
             self.gui.display.insert(tk.END, char)
+            self._text = self.gui.display.get()
             

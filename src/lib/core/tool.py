@@ -46,13 +46,13 @@ class Tool:
             for key in kwargs:
                 match key:
                     case "name":
-                        self.name =kwargs[key]
+                        self.name = kwargs[key]
                     case "title":
-                        self.title =kwargs[key]
+                        self.title = kwargs[key]
                     case "ui":
-                        self.ui =kwargs[key]
+                        self.ui = kwargs[key]
                     case "settings":
-                        pvalue = kwargs[key]
+                        pvalue  = kwargs[key]
                         if isinstance(pvalue, "Tuple"):
                             self.settings[pvalue[0]] = pvalue[1]
                         else:

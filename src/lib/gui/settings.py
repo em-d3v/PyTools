@@ -7,7 +7,7 @@ Author: Elena Miller
 import tkinter as tk
 from tkinter import ttk
 
-from csettings import Settings
+from ..csettings import Settings
 
 
 class GuiSettings(Settings):

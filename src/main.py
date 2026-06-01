@@ -4,8 +4,10 @@ Date: 05/13/2026
 Author: Elena Miller
 
 """
+from logic.application import Application
 from logic.main import MainApplication
-from lib.application import Application
+
+
 def main():
     """
     Main function to run the app
