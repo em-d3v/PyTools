@@ -10,8 +10,7 @@ import tkinter as tk
 from tkinter import ttk
 from typing import List
 
-import gui.menu as menu
-from gui import MenuItem, MenuItemList
+from gui.comp.menu_item import MenuItem, MenuItemList
 
 
 class MainMenuBar(tk.Menu):
@@ -36,7 +35,11 @@ class MainMenuBar(tk.Menu):
         parent.config(menu = self)
         
     def add_menu(self,menu:MenuItemList)->None:
-        """"""
+        """
+        Add a menu to the menu bar
+        Args:
+            menu (MenuItemList): Menu to add
+        """
         lbl = menu["name"]
         options = menu["items"]
         # self.add_cascade(label = lbl, menu = None)

@@ -11,8 +11,8 @@ from tkinter import ttk
 from typing import List
 
 import resources as res
-from gui.menu_bar import MainMenuBar
-from lib.gui import MenuItem, MenuItemList
+from gui import MenuItem, MenuItemList
+from gui.comp.menu_bar import MainMenuBar
 from lib.gui import constants as gs
 from logic.application import Application
 
