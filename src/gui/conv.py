@@ -7,7 +7,9 @@ Author: Elena Miller
 """
 import tkinter as tk
 from tkinter import ttk
-from lib.app import App
+
+from lib.gui.app import App
+
 
 class ConvGui(App):
     def __init__(self, master, **kwargs):

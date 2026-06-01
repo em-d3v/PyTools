@@ -3,17 +3,16 @@
 menu_bar.py
 Elena Miller
 5/11/2026
-Menu Bar
+Application Menu Bar
 """
 import sys
 import tkinter as tk
 from tkinter import ttk
 from typing import List
-import lib.constants as gs
 
-import gui.menus as menus
+import gui.menu as menu
+from gui import MenuItem, MenuItemList
 
-from lib.menu import CMenu, COption
 
 class MainMenuBar(tk.Menu):
     """
@@ -36,10 +35,10 @@ class MainMenuBar(tk.Menu):
         
         parent.config(menu = self)
         
-    def add_menu(self,menu:CMenu)->None:
+    def add_menu(self,menu:MenuItemList)->None:
         """"""
         lbl = menu["name"]
-        options = menu["options"]
+        options = menu["items"]
         # self.add_cascade(label = lbl, menu = None)
         if options == None:
             return
@@ -50,7 +49,6 @@ class MainMenuBar(tk.Menu):
                 opt_lbl = option.label
                 command = option.command
                 m = option.menu
-            
                 sub_menu.add_cascade(label = opt_lbl, command=command, menu=m)
                 # Add the option to the menu
             self.add_cascade(label = lbl, menu = sub_menu)

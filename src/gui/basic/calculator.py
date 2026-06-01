@@ -3,19 +3,19 @@ basic.py
 Elena Miller
 Created: 5/11/2026
 
-Main Module for Gui
+Calculator Gui
 
 """
 import tkinter as tk
 from typing import List
 
-import lib.constants as gs
-from lib.application import ApplicationGui
+from lib.gui import constants as gs
+from logic.application import AppUI
 
 keypad_btn_w=5
 keypad_btn_h=2
 
-class BasicCalculator(ApplicationGui):
+class BasicCalculator(AppUI):
     """	    
         Basic Calculator Gui		
     """

@@ -6,14 +6,15 @@ Author: Elena Miller
 """
 
 import sys
-from typing import List
 import tkinter as tk
 from tkinter import ttk
-import lib.constants as gs
-from gui.menu_bar import MainMenuBar
-from lib.menu import CMenu, COption
-from lib.application import Application
+from typing import List
+
 import resources as res
+from gui.menu_bar import MainMenuBar
+from lib.gui import MenuItem, MenuItemList
+from lib.gui import constants as gs
+from logic.application import Application
 
 
 class MainGui(tk.Tk):
@@ -23,12 +24,12 @@ class MainGui(tk.Tk):
     TITLE = "Tools"
     SIZE = "500x400"
     MENU_BAR_LABELS: List[str]  = [""]
+    app_libs: List
     def __init__(self,on_exit:callable = None, **kwargs):
         """
         Docstring for __init__
-        
-        
         """
+        self.res = res.Resource()
         # root
         super().__init__(**kwargs)
         self.geometry(self.SIZE)
@@ -36,6 +37,7 @@ class MainGui(tk.Tk):
         #menu bar
         menu_bar = MainMenuBar(self)
         menu_bar.config(font=gs.DEFAULT_MENU_FONT)
+        main_menu = tk.Menu()
         self.menu_bar = menu_bar
         self._app = None
         # self._apps: List[(str, tk.Frame, str)] = [
@@ -52,25 +54,40 @@ class MainGui(tk.Tk):
         
         self._body_panel.pack(expand=True, fill="both")
         #Add menus
-        file_menu:CMenu = CMenu(name="File", 
-                options=[ 
-                        COption(label="Log", cmd=None, menu=None),
-                        COption(label="Exit", cmd=on_exit, menu=None),
-                        COption(label="settings", cmd=None, menu=None),
+        self.menu_bar.add_menu(MenuItemList(name="File", 
+                items=[ 
+                        MenuItem(label="Log", cmd=None, menu=None),
+                        MenuItem(label="Exit", cmd=on_exit, menu=None),
+                        MenuItem(label="settings", cmd=None, menu=None),
                 ]
-        )
-        self.menu_bar.add_menu(file_menu)
-        tool_menu:CMenu = CMenu(name="Tool", 
-                options=[ 
-                        COption(label="Logger", cmd=None, menu=None),
-                        # COption(label="Exit", cmd=self.exit, menu=None),
+        ))
+        
+        # file_menu:MenuItemList = MenuItemList(name="File", 
+        #         items=[ 
+        #                 MenuItem(label="Log", cmd=None, menu=None),
+        #                 MenuItem(label="Exit", cmd=on_exit, menu=None),
+        #                 MenuItem(label="settings", cmd=None, menu=None),
+        #         ]
+        # )
+        # self.menu_bar.add_menu(file_menu)
+        tool_menu:MenuItemList = MenuItemList(name="Tool", 
+                items=[ 
+                        MenuItem(label="Logger", cmd=None, menu=None),
+                        # MenuItem(label="Exit", cmd=self.exit, menu=None),
                 ]
         )
         self.protocol("WM_DELETE_WINDOW", on_exit)
         
+    def _build(self):
+        """
+        Build Application
+        """
+        
+        pass
+    
     def addApp(self, app:Application, icon:str)->None:
         """Add Application
-        app: App to add
+        app: App to add         
         icon: icon to use for app tab
         """
         app_gui = app.gui
@@ -79,17 +96,34 @@ class MainGui(tk.Tk):
             gui = app_gui
             t = app.title
             self._tabs_frame.add(gui, text=t,image=res.ResImg(icon), compound="left")
-    
-    def add_apps(self, apps: List[tuple])->None:
-        """Build Application Frames"""
-        for name, app_cls, icon in apps:
-            app = app_cls(self._tabs_frame)
-            self._tabs_frame.add(app, text=name,image=res.ResImg(icon), compound="left")
+            #end if
+        #end def
+    def add_to_menu(self,menu:MenuItemList)->None:
+        """
         
+        """
+        lbl = menu["name"]
+        options = menu["items"]
+        # self.add_cascade(label = lbl, menu = None)
+        if options == None:
+            return
+        else:
+            # Create a new menu for the options
+            sub_menu = tk.Menu(self, tearoff=0)
+            for option in options:
+                opt_lbl = option.label
+                command = option.command
+                m = option.menu
+                sub_menu.add_cascade(label = opt_lbl, command=command, menu=m)
+                # Add the option to the menu
+            self.menu_bar.add_cascade(label = lbl, menu = sub_menu)
+        pass
+    
     def exit(self)->None:
         """Exit Application"""
         self._root.destroy()
         
+
 
         
         
