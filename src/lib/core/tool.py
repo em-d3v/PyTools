@@ -5,34 +5,26 @@ Author: Elena Miller
 
 """
 import tkinter as tk
+from enum import Enum
 from tkinter import ttk
-from typing import List
+from typing import List, Tuple
 
-class ToolUI(tk.Frame):
-    """
-    Base Tool GUI Class
-    """
-    def __init__(self, master, **kwargs):
-        """
-        Initialize ToolUI
-        """
-        super().__init__(master, **kwargs)
-        
-        #end
-    
-    def _build(self):
-        """
-        Method to build the Tool GUI
-        """
-        
-        pass   
+from lib.ui import ToolboxUI, ToolUI
+
+from .enums import ToolType
+
+
 class Tool:
     
     """A base class for tools in the application."""
-
-    SINGLE = "single" # tool is a single function
-    MULTI = "multi"   # tool is a collection of functions
-    def __init__(self, name:str="tool",title="Tool",type=SINGLE,ui = None):
+    ui      : tk.Frame
+    name    : str
+    title   : str
+    settings: dict
+    data    : dict
+    icon    : str | None
+    enabled : bool
+    def __init__(self, name:str="tool",title="Tool",type=ToolType.SINGLE,ui = None):
         """
         Create a Tool Instance
         Parameters:
@@ -48,30 +40,67 @@ class Tool:
         self.settings   = {}
         self.data       = {}
         
-    
-class ToolboxGui(ttk.Frame):
-    def __init__(self, master, **kwargs):
-        """
-        Initialize ToolUI
-        """
-        super().__init__(master, **kwargs)
-        
+    def configure(self,**kwargs):
+        pvalue = 0
+        if len(kwargs) > 0:
+            for key in kwargs:
+                match key:
+                    case "name":
+                        self.name =kwargs[key]
+                    case "title":
+                        self.title =kwargs[key]
+                    case "ui":
+                        self.ui =kwargs[key]
+                    case "settings":
+                        pvalue = kwargs[key]
+                        if isinstance(pvalue, "Tuple"):
+                            self.settings[pvalue[0]] = pvalue[1]
+                        else:
+                            self.settings = pvalue
+                    case "data":
+                        #checkif instance is tupple
+                        pvalue = kwargs[key]
+                        if isinstance(pvalue, "Tuple"):
+                            self.data[pvalue[0]] = pvalue[1]
+                        else:
+                            self.data = pvalue
+                    case "enabled":
+                        self.enabled = kwargs[key]
+                    case _:
+                        #do nothing
+                        pvalue = 0
         #end
-    
-    def _build(self):
-        """
-        Method to build the Tool GUI
-        """
-        
         pass
-    def AddToolUI(self, tool_ui, icon):
-        pass
+
+    def enable(self):
+        self.enabled = True
     
+    def disable(self):
+        self.enabled = False
+ 
 class Toolbox:
     """
     Class for a Collection of Tools
     """
+    ui: "ToolboxUI"| tk.Frame
+    tools: List[Tool]
+    
     def __init__(self, ui=None,tools=[]):
         self.ui = ui
         self.tools = tools
+        
+    def add(self,tool:"Tool"|List[Tool],**kwargs):
+        if self.ui is None:
+            raise ValueError(f"missing ui")
+        
+        if isinstance(tool,List):
+            for t in tool:
+                inst = t(**kwargs)
+                ui = inst.ui
+                gui = None
+                if ui is None:
+                    gui = ui(master=self.ui.tools)
+                else:
+                    gui = ui
+        pass
     
