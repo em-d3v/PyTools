@@ -2,7 +2,7 @@
 
 A basic calculator:
 
-- [ ] displays input onto the display
+- [X] displays input onto the display
 - [X] Performs Addition 
 - [X] Performs Subtraction
 - [X] Performs Multiplication

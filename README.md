@@ -27,14 +27,14 @@
 </div>
 
 
-
+![issues](https://custom-icon-badges.demolab.com/github/issues/em-d3v/PyTools?logo=issue)
 ![contributions](https://img.shields.io/github/contributors/em-d3v/PyTools)
 ![build][build]
 ![issues](https://custom-icon-badges.demolab.com/github/issues/em-d3v/PyTools?logo=issue)
 ![license](https://custom-icon-badges.demolab.com/github/license/em-d3v/PyTools?logo=law)
 
 ## Overview
-
+This application comprises of multiple smaller applications. This is still work in progress, so do expect bugs.
 - [documentation](docs/README.md)
 
 

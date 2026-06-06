@@ -7,7 +7,7 @@ main gui module for basic tools
 import tkinter as tk
 from tkinter import ttk
 
-from logic.application import AppLibraryUI, AppUI
+from gui import AppLibraryUI
 
 from .calculator import BasicCalculator as CalculatorGui
 
@@ -16,9 +16,7 @@ class BasicApps(AppLibraryUI):
     """
     Application Library Gui
     """
-    _apps = [
-        CalculatorGui
-    ]
+    
     def __init__(self, master,**kwargs ):
         super().__init__(master, **kwargs)
         self._build()

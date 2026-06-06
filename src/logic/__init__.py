@@ -6,7 +6,8 @@ Logic Package
 Serves as backend
 
 """
-from .application import AppLibraryUI, Application, ApplicationLibrary, AppUI
+from .application import AppLibDict, AppLibrary, Application
 
-__all__ = ["Application","AppUI",
-           "AppLibraryUI","ApplicationLibrary"]
+__all__ = ["Application",
+           "AppLibDict",
+           "AppLibrary"]

@@ -2,38 +2,81 @@
 Filename: main.py
 Date: 05/13/2026
 Author: Elena Miller
-
+MAIN GUI
 """
 from typing import List, Tuple
 
+from gui import AppUI
 from gui.main import MainGui
-from lib import Application, ApplicationGui
+from logic import AppLibDict, AppLibrary, Application
+from resources import Resource
 
-from .basic.calculator import BasicCalculator
+# from .apps import applications
+from .basic import BasicApps, BasicCalculator
 
 
 class MainApplication(Application):
     """Main Application Class"""
     #apps to be added to main app
-    _apps = [
-        (BasicCalculator, "calculator16x16.png")
-    ]
+    
+    applications: AppLibDict 
+    libraries: AppLibDict
     def __init__(self, name:str = "main", title:str = "PyTools", type:str = Application.APP_MULTI):
         super().__init__(name=name, title=title, type=type)
         #create main gui
-        self.gui=MainGui(on_exit=self.exit)
-        # self.
-        self.applications = []
+        self.resource = Resource()
+        self.applications = {}
+        self.libraries = {
+            "basic": BasicApps
+        }
+        
         self.tools = []
         self._build()
-        
+    
+    def add_apps(self, apps:dict, ui):
+        """Add apps to the main application"""
+        for app_name, app_cls in apps.items():
+            if isinstance(app_cls, Application):
+                app = app_cls(parent=ui._tabs_frame)
+                ui.add_app(app=app.gui, title=app.title)
+                self.applications.append(app)
+        pass
+    def add_app(self, app_cls:Application, ui):
+        """Add a single app to the main application"""
+        if isinstance(app_cls, Application) :
+            app = app_cls(parent=ui._tabs_frame)
+            ui.add_app(app=app.gui, title=app.title)
+            self.applications.append(app)
+            pass
+        pass
     def _build(self):
         """Build the application"""
-        print("main: building (tbi)")
-        for app_cls, icon in self._apps:
-            app = app_cls(parent=self.gui._tabs_frame)
-            self.gui.addApp(app, icon)
-            self.applications.append(app)
+        self.gui = MainGui(on_exit = self.exit)
+        # print("main: building ")
+        
+        ##build libraries first
+        for name, cls in self.libraries.items():
+            if issubclass(cls, AppLibrary):
+                lib = cls(parent=self.gui._tabs_frame)
+                print(f"Building {name} applications\n")
+                
+                print(f"Library: {lib.apps.keys()}")
+                for app_name, app_cls in lib.apps.items():
+                    
+                    print(f"App :{app_name}\n")
+                    if issubclass(app_cls, Application):
+                        inst = app_cls(parent=lib.gui.notebook)
+                        gui = inst.gui
+                        n = inst.name
+                        icon = inst.icon
+                        lib.gui.AddToTabs(params=(gui, n, icon))
+                        lib.applications[app_name] = inst
+                        self.applications[app_name] = inst
+                        pass
+                    self.gui.add_app(lib.gui,name,None)
+                
+        
+            pass
         pass
     
     def run(self):

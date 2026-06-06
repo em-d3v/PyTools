@@ -5,7 +5,7 @@ Author: Elena Miller
 
 """
 from .application import AppLibraryUI, AppUI
-from .menu_item import MenuItem, MenuItemList
+from .comp.menu_item import MenuItem, MenuItemList
 
 __all__ = ["conv",
            "basic",

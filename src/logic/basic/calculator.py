@@ -16,12 +16,17 @@ keypad_btn_w=5
 keypad_btn_h=2
 class BasicCalculator(Application):
     """Basic Calculator App"""
-    _text: str
-    def __init__(self,parent):
-        super().__init__(name="calculator",title="Calculator", gui=None)
+    name = "calculator"
+    title = "calculator"
+    
+    __name__ = "basic_calculator"
+    # __name__ = "calculator"
+    def __init__(self, parent):
+        super().__init__(name="calculator",title="Calculator", gui= Gui(master=parent), enabled=True)
         #configure buttons
-        self.icon = "calcu"
-        self.gui = Gui(master=parent)
+        self.icon = "calculator.png"
+        # self.gui = Gui(master=parent)
+        self.enabled = True
         buttons = self.gui.keys
         for btn in buttons:
             lbl = btn.cget("text")

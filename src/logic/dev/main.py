@@ -6,17 +6,26 @@ Desc:
 for app development purposes only
 """
 
-from lib import ApplicationLibrary
+from gui.dev import DevLib as Gui
+from gui.dev import LoggerUI
+from logic import AppLibrary, Application
 
+from .logger import LoggerTool
 
-class DevLib(ApplicationLibrary):
+applications = {
+    "logger": LoggerTool
+}
+class DevLib(AppLibrary):
     """development library"""
-   
+    name = "dev"
+    title = "DEV"
     
-    def __init__(self):
+    
+    def __init__(self,gui=Gui, apps=applications, parent=None):
         """
         create instance
         """
+        super().__init__(gui=gui, apps=apps, parent=parent)
         
         pass
     

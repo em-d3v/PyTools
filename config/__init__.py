@@ -4,6 +4,7 @@ Date: 05/17/2026
 Author: Elena Miller
 for Project Configuration
 """
+import env as env
 import settings as settings
 
-__all__ = ["settings"]
+__all__ = ["settings", "env"]

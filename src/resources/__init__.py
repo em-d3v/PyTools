@@ -8,7 +8,7 @@ import sys
 import tkinter as tk
 from typing import List, Literal, Tuple
 
-from .res import Resource
+from .rsrc import Resource
 
 DIRECTORY = sys.path[0] + "/resources/"
 IMG_DIR = DIRECTORY + "img/"

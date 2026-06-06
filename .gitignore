@@ -14,3 +14,4 @@
 **/*.log
 **/*.spec
 **/*.exe
+**/*.exe.stackdump

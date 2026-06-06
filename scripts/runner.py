@@ -5,15 +5,15 @@ Author: Elena Miller
 this script runs the main application
 """
 
-
-from datetime import datetime
+import json
+import os
 import subprocess
 import sys
-import os
+from datetime import datetime
 from pathlib import Path
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'config')))
 from config import settings as s
-
 
 project_dir = Path(__file__).parent.parent  # Get the directory of the current script
 # log_file = # Define the log file path

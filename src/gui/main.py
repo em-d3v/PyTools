@@ -12,9 +12,10 @@ from typing import List
 
 import resources as res
 from gui import MenuItem, MenuItemList
+from gui.application import AppLibraryUI, AppUI
 from gui.comp.menu_bar import MainMenuBar
 from lib.gui import constants as gs
-from logic.application import Application
+from logic.application import AppLibrary, Application
 
 
 class MainGui(tk.Tk):
@@ -37,15 +38,10 @@ class MainGui(tk.Tk):
         #menu bar
         menu_bar = MainMenuBar(self)
         menu_bar.config(font=gs.DEFAULT_MENU_FONT)
-        main_menu = tk.Menu()
+        # main_menu = tk.Menu()
         self.menu_bar = menu_bar
         self._app = None
-        # self._apps: List[(str, tk.Frame, str)] = [
-        #         ("Calculator", BasicCalculator,"calculator16x16.png"),
-        # ]
         self._body_panel = tk.Frame(master=self)
-        
-        
         self._tabs_frame = ttk.Notebook(master=self._body_panel)
         self._tabs_frame.pack(expand=True, fill="both")
         #add apps to tabs
@@ -85,17 +81,17 @@ class MainGui(tk.Tk):
         
         pass
     
-    def addApp(self, app:Application, icon:str)->None:
+    def add_app(self, app:AppUI|AppLibraryUI,title:str, icon:str= None)->None:
         """Add Application
         app: App to add         
         icon: icon to use for app tab
         """
-        app_gui = app.gui
-        gui = None
-        if app_gui is not None:
-            gui = app_gui
-            t = app.title
-            self._tabs_frame.add(gui, text=t,image=res.ResImg(icon), compound="left")
+        if icon is not None:
+            self._tabs_frame.add(app, text=title,image=res.ResImg(icon), compound="left")
+        else:
+            self._tabs_frame.add(app, text=title)
+        
+        
             #end if
         #end def
     def add_to_menu(self,menu:MenuItemList)->None:

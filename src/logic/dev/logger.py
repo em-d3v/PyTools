@@ -6,12 +6,17 @@ Desc:
 
 """
 
-from logic.application import Application
+import tkinter as tk
+from tkinter import ttk
+
+from gui.dev import LoggerUI
+from logic import Application
 
 
-class Example:
-    """class description"""
-    member:str
+class LoggerTool(Application):
+    """Used for Displaying application log files"""
+    name = "logger"
+    title = "Logger"
     
     def __init__(self):
         """

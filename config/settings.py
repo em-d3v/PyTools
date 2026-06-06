@@ -5,10 +5,11 @@ Author: Elena Miller
 Settings for the Python Tools project.
 """
 
+import os
+from pathlib import Path
 # 
 from typing import Dict
-from pathlib import Path
-import os
+
 FOLDER = Path(__file__).parent
 PROJECT = FOLDER.parent
 # project directories
@@ -34,6 +35,7 @@ EXTENSIONS = {
 TARGET = {
     "name": "PyTools",
     "dir": os.path.join(PROJECT, DIRECTORY["build"]),
-    "source": os.path.join(PROJECT, DIRECTORY["source"],"main.py")
+    "source": os.path.join(PROJECT, DIRECTORY["source"],"main.py"),
+    
 }
 

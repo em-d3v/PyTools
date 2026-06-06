@@ -5,3 +5,10 @@ Author: Elena Miller
 
 """
 
+from .calculator import BasicCalculator
+from .main import BasicApps
+
+__all__ = [
+    "BasicCalculator",
+    "BasicApps",
+]
