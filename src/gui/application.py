@@ -64,7 +64,7 @@ class AppLibraryUI(tk.Frame):
                     else:
                         self.notebook.add(child=app,state="normal",text=lbl)
         elif isinstance(params,Tuple):
-            print(f"Adding to Tabs: {params}")
+            print(f"Adding to Tabs: {params[1]}")
             app = params[0]
             lbl = params[1]
             icon = params[2]

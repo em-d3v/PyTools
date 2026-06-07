@@ -13,6 +13,7 @@ from resources import Resource
 
 # from .apps import applications
 from .basic import BasicApps, BasicCalculator
+from .dev import DevLib
 
 
 class MainApplication(Application):
@@ -27,7 +28,8 @@ class MainApplication(Application):
         self.resource = Resource()
         self.applications = {}
         self.libraries = {
-            "basic": BasicApps
+            "basic": BasicApps,
+            "dev": DevLib
         }
         
         self.tools = []
@@ -63,17 +65,20 @@ class MainApplication(Application):
                 print(f"Library: {lib.apps.keys()}")
                 for app_name, app_cls in lib.apps.items():
                     
-                    print(f"App :{app_name}\n")
+                    print(f"App:{app_name}\n")
                     if issubclass(app_cls, Application):
-                        inst = app_cls(parent=lib.gui.notebook)
-                        gui = inst.gui
-                        n = inst.name
-                        icon = inst.icon
-                        lib.gui.AddToTabs(params=(gui, n, icon))
-                        lib.applications[app_name] = inst
-                        self.applications[app_name] = inst
+                        lib.add(app_cls)
+                        # inst = app_cls(parent=lib.gui.notebook)
+                        # print(f"added app")
+                        # gui = inst.gui
+                        # n = inst.name
+                        # icon = inst.icon
+                        # lib.gui.AddToTabs(params=(gui, n, icon))
+                        # lib.applications[app_name] = inst
+                        # self.applications[app_name] = inst
+                        self.gui.add_ui(lib.gui,name,None)
                         pass
-                    self.gui.add_app(lib.gui,name,None)
+                    #add gui
                 
         
             pass

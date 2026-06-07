@@ -7,13 +7,3 @@ from typing import List, Tuple
 
 from .application import Application
 from .basic import BasicApps, BasicCalculator
-
-# applications = {
-#     "basic": {
-#         "type": "lib",
-#         "root": BasicApps,
-#         "apps": {
-#             "calculator": BasicCalculator
-#         }
-#     }
-# }

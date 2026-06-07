@@ -4,6 +4,7 @@ Date: 05/13/2026
 Author: Elena Miller
 Application Class 
 """
+import inspect
 import tkinter as tk
 from collections import UserDict
 from tkinter import ttk
@@ -119,14 +120,20 @@ class AppLibrary:
         if self.gui is not None:
             pass
         pass
-    def add(self, data:Application|dict, icon:str=None)->None:
+    def add(self, application:Application|dict, icon:str=None)->None:
         """
         Adds an Application to the lib
         """
         if self.gui is not None:
             #add app
-            if isinstance(data, Application):#if its 
-                app = data(parent=self.gui)
+            
+                
+            if isinstance(application, Application) or inspect.isclass(application):
+                #if its a class then create a class instance
+                if inspect.isclass(application):
+                    app = application(parent=self.gui)
+                else:
+                    app = application
                 self.applications[app.name] = app
                 gui = app.gui
                 if icon is not None:
@@ -136,8 +143,8 @@ class AppLibrary:
                 else:
                     self.gui.notebook.add(child=gui,text=app.title)
             else:
-                #add multiple apps
-                for name, cls in data.items():
+                #add multiple app instances
+                for name, cls in application.items():
                     app = cls(parent=self.gui.notebook)
                     img = app.icon
                     gui = app.gui

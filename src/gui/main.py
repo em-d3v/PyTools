@@ -80,8 +80,9 @@ class MainGui(tk.Tk):
         """
         
         pass
-    
-    def add_app(self, app:AppUI|AppLibraryUI,title:str, icon:str= None)->None:
+    def AddToTabs(self, app):
+        pass
+    def add_ui(self, app:AppUI|AppLibraryUI,title:str, icon:str= None)->None:
         """Add Application
         app: App to add         
         icon: icon to use for app tab

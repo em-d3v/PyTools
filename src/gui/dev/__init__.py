@@ -8,5 +8,6 @@ contains code that can be used by both logic and gui packaged modules.
 """
 from .logger import LoggerUI
 from .main import DevLib
+from .test_app import TestApp
 
-__all__ = ["DevLib", "LoggerUI"]
+__all__ = ["DevLib", "LoggerUI", "TestApp"]

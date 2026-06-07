@@ -11,9 +11,11 @@ from gui.dev import LoggerUI
 from logic import AppLibrary, Application
 
 from .logger import LoggerTool
+from .test_app import TestApp
 
 applications = {
-    "logger": LoggerTool
+    "logger": LoggerTool,
+    "test_app":TestApp
 }
 class DevLib(AppLibrary):
     """development library"""
@@ -21,11 +23,18 @@ class DevLib(AppLibrary):
     title = "DEV"
     
     
-    def __init__(self,gui=Gui, apps=applications, parent=None):
+    def __init__(self,gui=None, apps=applications, parent=None):
         """
         create instance
         """
-        super().__init__(gui=gui, apps=apps, parent=parent)
+        super().__init__(name="dev",title="Development",
+                        gui=gui, 
+                        apps={
+                            # "logger": LoggerTool,
+                            "test_app":TestApp
+                        }, 
+                        parent=parent
+                        )
         
         pass
     
