@@ -2,7 +2,7 @@
 
 This document is for documenting the base framework for the application
 
-```txt
+```
 directory layout:
 project/
 ├─dist/    --for final product
@@ -15,8 +15,10 @@ project/
 └─src/
 	├─lib/ --stores packages used by both gui & logic
 	├─gui/ 
+		├─comp/ --components
 	├─logic/ --
 	├─resources/
 	└─main.py -- stores the 
 
 ```
+Application
