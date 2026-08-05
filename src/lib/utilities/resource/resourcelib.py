@@ -11,7 +11,7 @@ from os import path
 from pathlib import Path
 from typing import List
 
-from .rsrc import Resource, ResourceData, ResourceType
+from .resource import Resource, ResourceData, ResourceType
 
 
 class ResourceLibraryData(UserDict):
@@ -22,9 +22,10 @@ class ResourceLibrary:
     """
     Resource Library
     """
-    resources: List[Resource]
-    root: str
+    name: str
+    """Resource Library Name"""
     
+    resources: List[Resource]    
     def __init__(self, root=sys.path[0], resources: List[Resource] = []):
         self.root = root
         self.resources = resources

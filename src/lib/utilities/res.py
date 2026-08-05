@@ -9,7 +9,7 @@ from typing import Any, List, Literal
 
 from lib.utils import FilePath, GetPath
 
-from .data import ResourceData
+from .resource.data import ResourceData
 
 ResourceType = Literal["data","image", "file"]
 """Resource Types"""
