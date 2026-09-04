@@ -9,7 +9,7 @@ from typing import List, Tuple
 from gui import AppUI
 from gui.main import MainGui
 from logic import AppLibDict, AppLibrary, Application
-from resources import Resource
+from resources import Resources
 
 # from .apps import applications
 from .basic import BasicApps, BasicCalculator
@@ -22,10 +22,10 @@ class MainApplication(Application):
     
     applications: AppLibDict 
     libraries: AppLibDict
+    
     def __init__(self, name:str = "main", title:str = "PyTools", type:str = Application.APP_MULTI):
         super().__init__(name=name, title=title, type=type)
         #create main gui
-        self.resource = Resource()
         self.applications = {}
         self.libraries = {
             "basic": BasicApps,
@@ -61,23 +61,18 @@ class MainApplication(Application):
             if issubclass(cls, AppLibrary):
                 lib = cls(parent=self.gui._tabs_frame)
                 print(f"Building {name} applications\n")
-                
-                print(f"Library: {lib.apps.keys()}")
-                for app_name, app_cls in lib.apps.items():
-                    
-                    print(f"App:{app_name}\n")
-                    if issubclass(app_cls, Application):
-                        lib.add(app_cls)
-                        # inst = app_cls(parent=lib.gui.notebook)
-                        # print(f"added app")
-                        # gui = inst.gui
-                        # n = inst.name
-                        # icon = inst.icon
-                        # lib.gui.AddToTabs(params=(gui, n, icon))
-                        # lib.applications[app_name] = inst
-                        # self.applications[app_name] = inst
-                        self.gui.add_ui(lib.gui,name,None)
-                        pass
+                #build apps
+                print(f"Library: {lib.app_classes.keys()}")
+                for app_name, app_cls in lib.app_classes.items():
+                    if self.applications.get(app_name) == None:
+                        print(f"App:{app_name}\n")
+                        if issubclass(app_cls, Application):
+                            inst = app_cls(parent=lib.gui.notebook)
+                            lib.add(inst)
+                            print("Added App: f{app_name}")
+                            self.applications[app_name] = inst
+                            self.gui.add_ui(lib.gui,name,None)
+                            pass
                     #add gui
                 
         

@@ -88,7 +88,9 @@ class MainGui(tk.Tk):
         icon: icon to use for app tab
         """
         if icon is not None:
-            self._tabs_frame.add(app, text=title,image=res.ResImg(icon), compound="left")
+            # self._tabs_frame.add(app, text=title,image=res.ResImg(icon), compound="left")
+            # pass
+            self._tabs_frame.add(app, text=title)
         else:
             self._tabs_frame.add(app, text=title)
         

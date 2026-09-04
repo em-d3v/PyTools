@@ -30,17 +30,33 @@ dirs = {
     "image":"img",
     "text":"txt"
 }
-class Resource:
-    
+extensions = {
+    "image": [".png", ".jpg", ".jpeg", ".gif"],
+    "text": [".txt", ".md", ".csv"],
+    "file": []
+}
+class Rsource:
+    """ Resource Class
+    Used for Getting Resources from the resources directory
+    """
     def __init__(self):
+        """ Create Resource Object
         
+        """
+        self._value = None
+         
         pass
     
     def __call__(self, type:ResourceType, src:str=None, **kwargs):
         """
         call for resource
+        Args:
+            type(ResourceType): type of resource
+            
         """
         resource = None
+        print(f"Resource: getting resource of type: {type} with src: {src}")
+        
         if type in ResourceTypes:
             match type:
                 case "image":
@@ -49,21 +65,106 @@ class Resource:
                     return self.image(src=src, gui=gui)
                 case "text":
                     #get text (string or string list)
-                    string = kwargs(key="string",default=False)
+                    string = kwargs.get("string", False)
                     return self.text(src=src,string=string)
                 case "file":
                     #get file
                     return self.file(src=src)
                 case _: 
-                    print("Unknown resource type")
+                    #check if the resource exists in the resources directory
+                    print(f"Resource: Unknown resource type: {type}")
+                    
                     pass
         return None
     
     
-    """ -------------------- Private Methods --------------------"""
-    
-    
+    """ -------------------- Static Methods --------------------"""
+    @staticmethod
+    def Path(src:str|None,*args):
+        """
+        Get path for resource
+        Args:
+            
+        """
+        if src is not None:
+            resourcePath = path.join(src, *args)
+        else:
+            resourcePath = path.join(sys.path[0], "resources", *args)
+        return resourcePath
+    @staticmethod
+    def File(*args):
+        """ Gets Resource File
+        
+        """
+        
+        filepath = Resource.Path(src=None, *args)
+        return res.files(filepath)
+    @staticmethod
+    def Get(type: ResourceType, src:str=None, **kwargs):
+        """
+        get resource
+        Args:
+            type(ResourceType): type of resource
+            src(str): source path
+            kwargs: arguments for resource
+        """
+        resource = None
+        #check if resource
+        match type:
+            case "image":
+                #get args
+                img = kwargs.get("src")
+                
+                img_path = None
+                if img is not None:
+                    img_path = path.join(sys.path[0], "resources", paths["image"], img)
+                    pass
+                resource = res.files
+            case _:
+                print("Unknown resource type")
+                resource = None
+        return resource
+    @staticmethod
+    def Text(src:str, string:Literal["single","multi",False]=False):
+        pass
     """ -------------------- Public  Methods -------------------- """
+    def type(self, src:str):
+        """
+        get resource type
+        Args:
+            src(str): source path
+        """
+        ext = path.splitext(src)[1]
+        for type, exts in extensions.items():
+            if ext in exts:
+                return type
+        return "unk"
+    def info(self, src: str):
+        """
+        get resource info
+        Args:
+            src(str): source path
+        """
+        info = {
+            "src": src,
+            "type": "unk"
+        }
+        p = path.join(sys.path[0], "resources", src)
+        return info
+    def path(self, src:str=None, *args):
+        """
+        get path for resource
+        checks if the resource can be found in the resources directory and returns the path to it
+        Args:
+            type(ResourceType): type of resource (Resources are separated into types for organization)
+                - image
+                - text
+                - file
+            src(str): source path
+        """
+        p = None
+        # if
+        return p
     def file(self, src):
         """
         get file

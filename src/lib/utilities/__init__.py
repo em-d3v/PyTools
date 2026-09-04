@@ -4,20 +4,18 @@ Custom Utilities Package
 """
 
 
-from lib.utilities.resource.manager import ResourceManager
-
 from .functs import FilePath, GetPath
-from .resource.resource import Resource
-from .resource.resourcelib import ResourceLibrary, ResourceLibraryData
-from .rsrc_data import ResourceData
+# from .resource.resource import Resource
+from .resource import (Resource, ResourceDict, ResourceLibDict,
+                       ResourceLibrary, ResourceManager, ResourcesList)
 
 __all__ = [
   "Resource",
-  "ResourceData",
-  ResourceLibrary,
-  
-  ResourceLibraryData,
-  ResourceManager,
+  "ResourceLibrary",
+  "ResourceDict",
+  "ResourceLibDict",
+  "ResourcesList",
+  "ResourceManager",
   "FilePath",
   "GetPath"
   

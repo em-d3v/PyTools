@@ -7,15 +7,14 @@ from enum import Enum
 from importlib import resources as res
 from os import path
 from pathlib import Path
-from typing import Any, List, Literal
+from typing import Any, Dict, List, Literal
 
 from functs import FilePath, GetPath
 
-from .data import PathDict, ResourceData
+from .data import PathDict, ResourceDict
 from .enums import ResourceType
 from .resource import Resource
-
-# from PIL import PIL
+from .resourcelib import ResourceLibDict, ResourceLibrary
 
 
 class ResourceManager:
@@ -24,10 +23,10 @@ class ResourceManager:
     
     """
     _dirs: dict
-    _libs: dict
+    _libraries: Dict[str, ResourceLibrary]
     _paths: PathDict
     _resources: dict
-    def __init__(self, **kwargs):
+    def __init__(self, resources: dict = {}, libraries: dict = {}):
         """Create Resource Manager
 
         Args:
@@ -35,7 +34,9 @@ class ResourceManager:
          """
         self._paths = {}  
         self._dirs = {}
-        self._resources = {}
+        
+        self._libraries = libraries
+        self._resources = resources
         pass
     # def __call__(self,type:ResourceType,  **kwds):
     #     """Get a Resource
@@ -54,14 +55,47 @@ class ResourceManager:
     #             return None
     #     pass
     @classmethod
-    def load_resource(self, src: List[str], **kwds):
+    def load_resource(self,key:str, **kwds):
         """Load Resource
+
+        Args:
+            key (str): Resource key
+            src (List[str]): file path list
+        """
+        return
+    def import_resource(self,key: str, src: List[str], **kwds):
+        """Import Resource
 
         Args:
             src (List[str]): file path list
         """
+        rsrc = Resource()
         return
 
+    def get_resource(self, lib_key: str, res_key: str):
+        """Get Resource
+
+        Args:
+            lib_key (str): Library key
+            res_key (str): Resource key
+        """
+        if lib_key in self._libraries:
+            library = self._libraries[lib_key]
+            resource = library.get(res_key)
+            return resource
+        return None
+    def get(self,lib_key:str, res_key:str, **kwds):
+        """Get Resource
+
+        Args:
+            lib_key (str): Library key
+            res_key (str): Resource key
+        """
+        rsrc = self.get_resource(lib_key, res_key)
+        if rsrc is None:
+            print(f"Resource '{res_key}' not found in library '{lib_key}'")
+            return None
+        
     @classmethod
     def data(self,*kwds):
         pass
@@ -80,3 +114,5 @@ class ResourceManager:
     @staticmethod
     def Import(self, src, **kwds):
         return
+    
+    

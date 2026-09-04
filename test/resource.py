@@ -3,7 +3,8 @@
 
 """
 
-from src.resources
+from src.resources import Resource, Resources
+
 
 class TestResource:
     def __init__(self):

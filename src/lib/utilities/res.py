@@ -9,7 +9,7 @@ from typing import Any, List, Literal
 
 from lib.utils import FilePath, GetPath
 
-from .resource.data import ResourceData
+from .resource.data import ResourceDict
 
 ResourceType = Literal["data","image", "file"]
 """Resource Types"""
@@ -45,7 +45,7 @@ class Resource:
   """resource type"""
   src: str | List[str]
   """source path"""
-  data: ResourceData
+  data: ResourceDict
   """resource data"""
   value: Any
   """resource value"""
@@ -67,7 +67,7 @@ class Resource:
     self.type = type
     self.value = value
     self.config = {}
-    self.data = ResourceData({'id':id,'name':name,'src':src,'type':type,'value':value,'config':config})
+    self.data = ResourceDict({'id':id,'name':name,'src':src,'type':type,'value':value,'config':config})
     
   def __call__(self, **kwds):
     """

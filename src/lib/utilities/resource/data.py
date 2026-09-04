@@ -7,7 +7,6 @@ from collections import UserDict, UserList
 
 class PathDict(UserDict):
     """Resource Directory Dictionary
-
     Args:
         UserDict (_type_): _description_
     """
@@ -59,7 +58,7 @@ class PathDict(UserDict):
 
 
 
-class ResourceData(UserDict):
+class ResourceDict(UserDict):
     """Resource Data
 
     Args:
@@ -98,3 +97,5 @@ class ResourcesList(UserList):
     if not isinstance(key, str):
       raise KeyError("Only string keys are allowed")
     super().__setitem__(key, item)
+
+
