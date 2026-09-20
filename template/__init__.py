@@ -1,7 +1,7 @@
 """
 Template Package
 Author: 
-Date Created: 5/13/2026
+Date Created: MM/DD/YYYY
 
 Library Package
 contains code that can be used by both logic and gui packaged modules.
