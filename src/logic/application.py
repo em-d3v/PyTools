@@ -11,7 +11,8 @@ from tkinter import ttk
 from typing import List, Tuple
 
 from gui import AppLibraryUI, AppUI
-from src.resources import Resources
+
+# from src.resources import Resources
 
 
 class Application:
@@ -149,31 +150,33 @@ class AppLibrary:
 
                 self.applications[app.name] = app
                 gui = app.gui
-                icon = app.icon
-                print(f"App ({app.name}): {app.title}, icon: {icon}")
-                if icon is not None:
-                    # get resource for icon
-                    # tab_icon = self.resource("image", src=icon)
-                    # tab_icon = self.resource(resType="image", src=["icons", icon])
-                    tab_icon = Resources.get("image", name=icon)
-                    self.gui.notebook.add(
-                        child=gui, text=app.title, image=tab_icon.value, compound="left")
-                    pass
-                else:
-                    self.gui.notebook.add(child=gui, text=app.title)
+                # icon = app.icon
+                # print(f"App ({app.name}): {app.title}, icon: {icon}")
 
+                # if icon is not None:
+                #     # get resource for icon
+                #     # tab_icon = self.resource("image", src=icon)
+                #     # tab_icon = self.resource(resType="image", src=["icons", icon])
+                #     tab_icon = Resources.get("image", name=icon)
+                #     self.gui.notebook.add(
+                #         child=gui, text=app.title, image=tab_icon.value, compound="left")
+                #     pass
+                # else:
+                #     self.gui.notebook.add(child=gui, text=app.title)
+                self.gui.notebook.add(child=gui, text=app.title)
             else:
                 # add multiple app instances
                 for name, cls in application.items():
                     app = cls(parent=self.gui.notebook)
-                    img = app.icon
+                    # img = app.icon
                     gui = app.gui
-                    if icon is not None:
-                        tab_icon = self.resource("image", name=img)
-                        self.gui.notebook.add(
-                            child=gui, text=app.title, image=tab_icon, compound="left")
-                    else:
-                        self.gui.notebook.add(child=gui, text=app.title)
+                    # if icon is not None:
+                    #     tab_icon = self.resource("image", name=img)
+                    #     self.gui.notebook.add(
+                    #         child=gui, text=app.title, image=tab_icon, compound="left")
+                    # else:
+                        # self.gui.notebook.add(child=gui, text=app.title)
+                    self.gui.notebook.add(child=gui, text=app.title)
         pass
 
 

@@ -6,7 +6,8 @@ import tkinter as tk
 from tkinter import ttk
 from typing import List, Optional, Tuple
 
-from resources import Resource
+# from resources import Resource
+from lib.utilities import Resource
 
 
 class AppUI(tk.Frame):

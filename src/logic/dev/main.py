@@ -1,5 +1,5 @@
 """
-Filename: example.py
+Filename: main.py
 Date: 05/13/2026
 Author: Elena Miller
 Desc:
@@ -13,15 +13,16 @@ from logic import AppLibrary, Application
 from .logger import LoggerTool
 from .test_app import TestApp
 
+# applications to be added to dev library
 applications = {
-    "logger": LoggerTool,
-    "test_app":TestApp
+    # "logger": LoggerTool,
+    "test_app": TestApp
 }
 class DevLib(AppLibrary):
     """development library"""
     name = "dev"
     title = "DEV"
-    
+    icon = None
     
     def __init__(self,gui=None, apps=applications, parent=None):
         """
@@ -29,15 +30,10 @@ class DevLib(AppLibrary):
         """
         super().__init__(name="dev",title="Development",
                         gui=gui, 
-                        apps={
-                            # "logger": LoggerTool,
-                            "test_app":TestApp
-                        }, 
+                        apps = applications,
                         parent=parent
                         )
         
         pass
     
-    def __call__(self, *args, **kwds):
-        """call desc"""
-        pass
+    

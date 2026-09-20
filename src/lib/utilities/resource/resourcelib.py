@@ -11,7 +11,8 @@ from os import path
 from pathlib import Path
 from typing import List
 
-from .resource import Resource, ResourceData, ResourceType
+from .data import ResourceDict
+from .resource import Resource, ResourceType
 
 
 class ResourceLibDict(UserDict):
@@ -40,15 +41,14 @@ class ResourceLibDict(UserDict):
             raise KeyError("Only string keys are allowed")
         key = key.lower()
         return super().__getitem__(key)
-    def __setitem__(self, key, value):
+    def __setitem__(self, key:str, value:ResourceDict):
         """Set Resource by key
-
         Args:
             key (str): Resource name
-            value (Resource): Resource object
+            value (ResourceDict): Resource dictionary
         """
-        if not isinstance(value, Resource):
-            raise TypeError("Value must be a Resource object.")
+        if not isinstance(value, ResourceDict):
+            raise TypeError("Value must be a ResourceDict object.")
         super().__setitem__(key, value)
 
     def __delitem__(self, key):

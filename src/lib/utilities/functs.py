@@ -36,6 +36,7 @@ def GetPath(root: str | None, filepath: str | List[str]) -> str:
         str: Path to the resource
   """
   if root is not None:
+      #get path to resource using root
       if isinstance(filepath, List):
           return path.join(root, *filepath)
       else:

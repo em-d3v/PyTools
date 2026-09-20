@@ -7,7 +7,7 @@ from os import path
 from pathlib import Path
 from typing import Any, List, Literal
 
-from lib.utils import FilePath, GetPath
+from lib.utilities import FilePath, GetPath
 
 from .resource.data import ResourceDict
 

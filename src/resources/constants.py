@@ -6,8 +6,6 @@ from enum import Enum
 from os import path
 from typing import Literal
 
-from lib.utils import GetPath
-
 FileTypes = {
     "image": ["png", "jpg", "jpeg", "gif"],
     "text": ["txt", "md", "csv"],

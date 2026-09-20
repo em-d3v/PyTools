@@ -21,6 +21,6 @@ class TestApp(Application):
         super().__init__(name=name, title=title, gui=gui, enabled=True)
         self.gui = Gui(master=parent)
         pass
-    
+        
     def build(self):
         pass

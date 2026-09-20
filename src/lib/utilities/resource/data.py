@@ -23,7 +23,7 @@ class PathDict(UserDict):
             else:
                 self.filepaths[key] = value
 
-    def path(self, key_list: List[str] = [], data: dict = None):
+    def path(self, key_list: list[str] = [], data: dict = None):
         paths = []
         # if root is not None:
         #     paths.append(root)
@@ -52,7 +52,7 @@ class PathDict(UserDict):
     def __getitem__(self, key):
         return super().__getitem__(key)
 
-    def __setitem__(self, key, item: str | "PathDict"):
+    def __setitem__(self, key, item: str):
         # if isinstance()
         return super().__setitem__(key, item)
 

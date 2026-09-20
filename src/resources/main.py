@@ -24,13 +24,17 @@ directories = {
     "text": {"root": "txt"},
     "file": {"root": DIRECTORY},
 }
+# Icons
+# Icons = ResourceLibrary(
+#     ResourceLibDict({
+#         "calculator": ResourceDict({"name": "calculator", "type": "image", "source": [DIRECTORY, directories["image"]["root"], "icons", "calculator.png"]}),
+#         "add": ResourceDict({"name": "add", "type": "image", "source": [DIRECTORY, directories["image"]["root"], "icons", "add.png"]}),
+#         "calendar": ResourceDict({"name": "calendar", "type": "image", "source": [DIRECTORY, directories["image"]["root"], "icons", "calendar.png"]}),
+#         "error": ResourceDict({"name": "error", "type": "image", "source": [DIRECTORY, directories["image"]["root"], "icons", "application_error.png"]}),
+#     })
+# )
+"""Icon Resources"""
 
-Icons = ResourceLibrary(
-    ResourceLibDict({
-        "calculator": ResourceDict({"name": "calculator", "type": "image", "source": [DIRECTORY, directories["image"]["root"], "icons", "calculator.png"]}),
-        "add": ResourceDict({"name": "add", "type": "image", "source": [DIRECTORY, directories["image"]["root"], "icons", "add.png"]}),
-        "calendar": ResourceDict({"name": "calendar", "type": "image", "source": [DIRECTORY, directories["image"]["root"], "icons", "calendar.png"]}),
-        "error": ResourceDict({"name": "error", "type": "image", "source": [DIRECTORY, directories["image"]["root"], "icons", "application_error.png"]}),
-    })
-)
-Resources = ResourceManager(resources={}, libraries={"icons": Icons})
+
+# Resources = ResourceManager(resources={}, libraries={"icons": Icons})
+Resources = ResourceManager(resources={}, libraries={})

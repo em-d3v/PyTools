@@ -2,6 +2,7 @@
 rsrc.py
 resource
 """
+from collections import UserDict
 from typing import Any, Final, List, Literal
 
 from .enums import ObjectType, ResourceType

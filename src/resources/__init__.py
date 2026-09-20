@@ -9,7 +9,8 @@ import tkinter as tk
 from typing import List, Literal, Tuple
 
 from .main import Resources
-from .resource import Resource
+
+# from .resource import Resource
 
 # DIRECTORY = sys.path[0] + "/resources/"
 # IMG_DIR = DIRECTORY + "img/"
@@ -24,6 +25,6 @@ from .resource import Resource
 
 
 __all__ = [
-    "Resource",
+    # "Resource",
     "Resources",
 ]

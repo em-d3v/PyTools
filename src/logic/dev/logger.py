@@ -9,7 +9,7 @@ Desc:
 import tkinter as tk
 from tkinter import ttk
 
-from gui.dev import LoggerUI
+from gui.dev import LoggerUI as Gui
 from logic import Application
 
 
@@ -18,13 +18,10 @@ class LoggerTool(Application):
     name = "logger"
     title = "Logger"
     
-    def __init__(self):
+    def __init__(self, name="logger", title="Logger", gui=Gui, parent=None, icon=None):
         """
         create instance
         """
-        
+        super().__init__(name=name, title=title, gui=gui, enabled=True)
         pass
     
-    def __call__(self, *args, **kwds):
-        """call desc"""
-        pass

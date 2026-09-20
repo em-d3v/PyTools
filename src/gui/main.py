@@ -16,6 +16,7 @@ from gui.application import AppLibraryUI, AppUI
 from gui.comp.menu_bar import MainMenuBar
 from lib.gui import constants as gs
 from logic.application import AppLibrary, Application
+from resources import Resources
 
 
 class MainGui(tk.Tk):
@@ -30,7 +31,7 @@ class MainGui(tk.Tk):
         """
         Docstring for __init__
         """
-        self.res = res.Resource()
+        # self.res = res.Resource()
         # root
         super().__init__(**kwargs)
         self.geometry(self.SIZE)
@@ -45,33 +46,28 @@ class MainGui(tk.Tk):
         self._tabs_frame = ttk.Notebook(master=self._body_panel)
         self._tabs_frame.pack(expand=True, fill="both")
         #add apps to tabs
-    
-        # self._build_apps()
+        # Menus
+        self._file_menu = MenuItemList(name="File",
+            items=[ MenuItem(label="Log", cmd=None, menu=None), 
+                   MenuItem(label="Settings", cmd=None, menu=None),
+                    MenuItem(label="Exit", cmd=on_exit, menu=None),
+            ])
+        self._basic_menu = MenuItemList(name="Basic",
+            items=[ MenuItem(label="Calculator", cmd=None, menu=None),
+                    MenuItem(label="Settings", cmd=None, menu=None),
+            ])
+        self._dev_menu = MenuItemList(name="Dev",
+            items=[ MenuItem(label="Logger", cmd=None, menu=None),
+                    MenuItem(label="Settings", cmd=None, menu=None),
+            ])
         
-        self._body_panel.pack(expand=True, fill="both")
         #Add menus
-        self.menu_bar.add_menu(MenuItemList(name="File", 
-                items=[ 
-                        MenuItem(label="Log", cmd=None, menu=None),
-                        MenuItem(label="Exit", cmd=on_exit, menu=None),
-                        MenuItem(label="settings", cmd=None, menu=None),
-                ]
-        ))
+        self.menu_bar.add_menu(self._file_menu)
+        self.menu_bar.add_menu(self._basic_menu)
+        self.menu_bar.add_menu(self._dev_menu)
         
-        # file_menu:MenuItemList = MenuItemList(name="File", 
-        #         items=[ 
-        #                 MenuItem(label="Log", cmd=None, menu=None),
-        #                 MenuItem(label="Exit", cmd=on_exit, menu=None),
-        #                 MenuItem(label="settings", cmd=None, menu=None),
-        #         ]
-        # )
-        # self.menu_bar.add_menu(file_menu)
-        tool_menu:MenuItemList = MenuItemList(name="Tool", 
-                items=[ 
-                        MenuItem(label="Logger", cmd=None, menu=None),
-                        # MenuItem(label="Exit", cmd=self.exit, menu=None),
-                ]
-        )
+        # pack gui
+        self._body_panel.pack(expand=True, fill="both")
         self.protocol("WM_DELETE_WINDOW", on_exit)
         
     def _build(self):

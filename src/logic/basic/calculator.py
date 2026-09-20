@@ -11,7 +11,6 @@ from typing import List
 
 from gui.basic.calculator import BasicCalculator as Gui
 from logic.application import Application
-from resources import Resource
 
 keypad_btn_w = 5
 keypad_btn_h = 2

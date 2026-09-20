@@ -9,8 +9,7 @@ from os import path
 from pathlib import Path
 from typing import Any, Dict, List, Literal
 
-from functs import FilePath, GetPath
-
+from ..functs import FilePath, GetPath
 from .data import PathDict, ResourceDict
 from .enums import ResourceType
 from .resource import Resource

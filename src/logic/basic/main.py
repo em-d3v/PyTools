@@ -5,9 +5,7 @@ Elena Miller
 """
 from gui.basic import BasicCalculator
 from logic.application import AppLibrary, AppLibraryUI
-from resources import Resource
 
-# from src.gui import 
 from .calculator import BasicCalculator
 
 applications = {
