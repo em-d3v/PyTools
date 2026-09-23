@@ -5,13 +5,16 @@ Author: Elena Miller
 Desc:
 
 """
+
 from gui import AppUI
 from logic import Application
 
 
 class TemplateApplication(Application):
     """class description"""
-    
+    settings = {}
+    title = "Template"
+    name = "template"
     def __init__(self,name="template",title="Template",gui=None, parent=None):
         """
         create instance

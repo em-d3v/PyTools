@@ -6,15 +6,18 @@ Desc:
 
 """
 
+from .template_class import TemplateBaseClass
 
-class TemplateClass:
-    """class description"""
-    member:str
+
+class TemplateSubClass(TemplateBaseClass):
+    """sub class description"""
+    
     
     def __init__(self):
         """
         create instance
         """
+        super().__init__()
         
         pass
     

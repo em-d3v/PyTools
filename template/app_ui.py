@@ -5,6 +5,9 @@ Author: Elena Miller
 Desc:
 
 """
+import tkinter as tk
+from typing import List
+
 from gui import AppUI
 
 
