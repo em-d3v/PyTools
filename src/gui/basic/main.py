@@ -9,8 +9,6 @@ from tkinter import ttk
 
 from gui import AppLibraryUI
 
-from .calculator import BasicCalculator as CalculatorGui
-
 
 class BasicApps(AppLibraryUI):
     """

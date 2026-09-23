@@ -24,7 +24,7 @@ class MainGui(tk.Tk):
     Root Gui
     """
     TITLE = "Tools"
-    SIZE = "500x400"
+    SIZE = "600x400"
     MENU_BAR_LABELS: List[str]  = [""]
     app_libs: List
     def __init__(self,on_exit:callable = None, **kwargs):

@@ -3,7 +3,7 @@ basic.py
 Elena Miller
 Created: 5/11/2026
 
-Main Module for Gui
+Calculator (Back-end)
 
 """
 import tkinter as tk

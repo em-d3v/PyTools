@@ -99,8 +99,8 @@ class ScrollFrame(tk.Frame):
         self.canvas.itemconfig(self.inner_frame, width=event.width)
         
     
-    def pack(self, **kwargs):
-        """
-        pack the scrollframe
-        """
-        super().pack(**kwargs)
+    # def pack(self, **kwargs):
+    #     """
+    #     pack the scrollframe
+    #     """
+    #     super().pack(**kwargs)

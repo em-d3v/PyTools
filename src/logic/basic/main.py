@@ -3,10 +3,11 @@ File: main.py
 5/27/2026
 Elena Miller
 """
-from gui.basic import BasicCalculator
+from gui.basic import BasicCalculator, BasicConversion
 from logic.application import AppLibrary, AppLibraryUI
 
 from .calculator import BasicCalculator
+from .conversion import BasicConversion
 
 applications = {
         "calculator": BasicCalculator
@@ -28,7 +29,8 @@ class BasicApps(AppLibrary):
                         title="Basic",
                          gui=gui, 
                          apps={
-                            "calculator": BasicCalculator
+                            "calculator": BasicCalculator,
+                            "conversion": BasicConversion
                             }, 
                          parent=parent
                          )
