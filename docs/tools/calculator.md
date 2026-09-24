@@ -1,7 +1,6 @@
-## Calculator
+## Calculators
 
-A basic calculator:
-
+basic calculator:
 - [X] displays input onto the display
 - [X] Performs Addition 
 - [X] Performs Subtraction
