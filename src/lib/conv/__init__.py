@@ -8,11 +8,22 @@ for conversion calculations
 """
 from .converter import Converter
 from .enums import ConvWay
+from .length import Length
+from .number import NumberConversion
 from .temperature import Temperature
+from .volume import Volume
+from .weight import Weight
 
-conversions = {
-    "Temperature": Temperature
+converters: dict[str, Converter] = {
+    "Temperature": Temperature,
+    "Length": Length,
+    "Weight": Weight,
+    "Volume": Volume,
+    "Number": NumberConversion
 }
+"""Converter Classes"""
+
 __all__ = [
-    Temperature, ConvWay, Converter
-    ]
+    ConvWay, Converter, converters,
+    Length, Temperature, NumberConversion, Volume, Weight,
+]

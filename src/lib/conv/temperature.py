@@ -34,7 +34,8 @@ class Temperature (Converter):
             self.set("unit",unit)
         if value is not None:
             self.set("value", value)
-        
+
+
         result = 0.0
         match conv:
             case "C":
@@ -50,31 +51,31 @@ class Temperature (Converter):
     
     def _celsius(self):
         """convert to celsius"""
-        match self.unit:    # the current unit
+        match self._unit:    # the current unit
             case "K":
-                return self.value - 273.15
+                return self._value - 273.15
             case "C":
-                return self.value 
+                return self._value 
             case "F":
-                return (self.value-32) * 5/9
+                return (self._value-32) * 5/9
             case "R":
-                return self.value * 5/9 - 273.15
+                return self._value * 5/9 - 273.15
             case _:
-                raise ValueError(f"Unknown unit: {self.unit}")
+                raise ValueError(f"Unknown unit: {self._unit}")
 
     def _fahr(self):
         """convert to Fahrenheit"""
-        match self.unit:    # current unit
+        match self._unit:    # current unit
             case "K":
-                return (self.value*9/5) - 273.15
+                return (self._value*9/5) - 273.15
             case "C":
-                return (self.value * 9/5) + 32
+                return (self._value * 9/5) + 32
             case "F":
-                return self.value 
+                return self._value 
             case "R":
-                return self.value - 459.67
+                return self._value - 459.67
             case _:
-                raise ValueError(f"Unknown unit: {self.unit}")
+                raise ValueError(f"Unknown unit: {self._unit}")
 
     def _kelvin(self):
         """Convert to Kelvin
@@ -85,17 +86,17 @@ class Temperature (Converter):
         Returns:
             float: result
         """
-        match self.unit:    
+        match self._unit:    
             case "K":
-                return self.value
+                return self._value
             case "C":
-                return self.value + 273.15
+                return self._value + 273.15
             case "F":
-                return (self.value + 459.67) * 5/9
+                return (self._value + 459.67) * 5/9
             case "R":
-                return self.value * 5/9
+                return self._value * 5/9
             case _:
-                raise ValueError(f"Unknown unit: {self.unit}")
+                raise ValueError(f"Unknown unit: {self._unit}")
     
     def _rankine(self):
         """Convert to Rankine
@@ -105,15 +106,15 @@ class Temperature (Converter):
         Returns:
             float: result
         """
-        match self.unit:    
+        match self._unit:    
             case "K":
-                return self.value
+                return self._value
             case "C":
-                return self.value + 273.15
+                return self._value + 273.15
             case "F":
-                return (self.value + 459.67) * 5/9
+                return (self._value + 459.67) * 5/9
             case "R":
-                return self.value * 5/9
+                return self._value * 5/9
             case _:
-                raise ValueError(f"Unknown unit: {self.unit}")
+                raise ValueError(f"Unknown unit: {self._unit}")
     

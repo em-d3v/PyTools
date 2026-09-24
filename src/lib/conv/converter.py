@@ -19,18 +19,18 @@ class Converter:
     Conversion Units List or Dictionary
     
     """
-    unit: any
+    _unit: any
     """base unit"""
   
-    value: any
+    _value: any
     """value"""
     
     def __init__(self, unit, value):
         """
         create instance
         """
-        self.unit = unit
-        self.value = value
+        self._unit = unit
+        self._value = value
         
         pass
     
@@ -42,7 +42,11 @@ class Converter:
             unit (any, optional): base unit to conver from. Defaults to None.
             value (any, optional): value to convert from. Defaults to None.
         """
-        
+        if unit is not None:
+            self.set("unit",unit)
+        if value is not None:
+            self.set("value", value)
+
         pass
     
     
@@ -54,10 +58,10 @@ class Converter:
         """
         match member:
             case "unit":
-                self.unit = value;
+                self._unit = value;
                 return;
             case "value":
-                self.value = value;
+                self._value = value;
                 return;
             case _:
                 return;

@@ -9,15 +9,15 @@ Desc:
 from .converter import Converter
 
 
-class Length(Converter):
-    """Length Converter"""
-    
+class NumberConversion(Converter):
+    """Weight Converter"""
     units = {
-        "Millimeter": "mm", "Centimeter": "cm",
-        "Meter": "m", "Kilometer": "km",
-        "Inch": "in", "Foot": "ft",
-        "Yard": "yd", "Mile": "mi"
-        }
+        "Binary": "bin",
+        "Decimal": "dec",
+        "Octal": "oct",
+        "Hexadecimal": "hex",
+        "ASCII": "ascii",
+    }
     
     def __init__(self, unit, value):
         """
@@ -28,7 +28,7 @@ class Length(Converter):
         pass
     
     def __call__(self, conv, unit=None, value=None):
-        """Convert Length"""
+        """Convert number"""
         if unit is not None:
             self.set("unit", unit)
         if value is not None:
